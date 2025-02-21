@@ -12,12 +12,12 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                    {{ __('Dashboard') }}
+                <x-nav-link :href="route('admin.reservations.index')" :active="request()->routeIs('admin.reservations.index')">
+                    {{ __('予約一覧') }}
                 </x-nav-link>
-                <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
-                    {{ __('Index') }}
-                </x-nav-link>
+                <x-nav-link :href="route('admin.reservations.create')" :active="request()->routeIs('admin.reservations.create')">
+                    {{ __('予約追加') }}
+                </x-nav-link>   
                 </div>
             </div>
 

@@ -1,5 +1,6 @@
 <x-app-layout>
     <div class="container mx-auto mt-4">
+        <h1 class="text-3xl font-bold">予約一覧</h1>
         <table class="table-auto w-full">
             <thead>
                 <tr>
