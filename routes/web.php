@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\ReservationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/user', [UserController::class, 'index'])->name('user.index');
+Route::get('/admin/reservation', [ReservationController::class, 'adminIndex'])->name('admin.reservations.index');
+Route::get('/admin/reservation/create', [ReservationController::class, 'adminCreate'])->name('admin.reservations.create');
 
 require __DIR__.'/auth.php';
