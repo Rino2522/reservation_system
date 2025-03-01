@@ -8,7 +8,8 @@
                     <th class="px-4 py-2">メールアドレス</th>
                     <th class="px-4 py-2">電話番号</th>
                     <th class="px-4 py-2">人数</th>
-                    <th class="px-4 py-2">日時</th>
+                    <th class="px-4 py-2">日</th>
+                    <th class="px-4 py-2">時間</th>
                 </tr>
             </thead>
             <tbody>
@@ -18,7 +19,8 @@
                         <td class="border px-4 py-2">{{ $reservation->email }}</td>
                         <td class="border px-4 py-2">{{ $reservation->phone}}</td>
                         <td class="border px-4 py-2">{{ $reservation->number_of_guests }}</td>
-                        <td class="border px-4 py-2">{{ $reservation->date_time }}</td>
+                        <td class="border px-4 py-2">{{ $reservation->date }}</td>
+                        <td class="border px-4 py-2">{{ $reservation->time }}</td>
 
                     </tr>
                 @endforeach
