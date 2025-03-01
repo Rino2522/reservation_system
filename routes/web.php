@@ -17,7 +17,7 @@ use App\Http\Controllers\ReservationController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -29,7 +29,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/admin/reservation', [ReservationController::class, 'adminIndex'])->name('admin.reservations.index');
-Route::get('/admin/reservation/create', [ReservationController::class, 'adminCreate'])->name('admin.reservations.create');
+Route::get('/admin/reservations', [ReservationController::class, 'adminIndex'])->name('admin.reservations.index');
+Route::get('/admin/reservations/create', [ReservationController::class, 'adminCreate'])->name('admin.reservations.create');
+Route::post('/admin/reservations', [ReservationController::class, 'adminStore'])->name('admin.reservations.store');
+Route::get('/admin/reservations/edit/{reservation}', [ReservationController::class, 'adminEdit'])->name('admin.reservations.edit');
+
+Route::get('/reservations/create', [ReservationController::class, 'create'])->name('reservations.create');
+Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
 
 require __DIR__.'/auth.php';

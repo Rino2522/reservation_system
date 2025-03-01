@@ -21,7 +21,8 @@ class ReservationFactory extends Factory
             'email' => $this->faker->safeEmail,
             'phone' => $this->faker->phoneNumber,
             'number_of_guests' => $this->faker->numberBetween(1, 10),
-            'date_time' => $this->faker->dateTimeBetween('+1 days', '+1 month'),
+            'date_' => $this->faker->dateBetween('+1 days', '+1 month'),
+            'time' => $this->faker->time(),
         ];
     }
 }

@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone');
             $table->integer('number_of_guests');
-            $table->dateTime('date_time');
+            $table->date('date');
+            $table->time('time');
             $table->timestamps();
         });
     }

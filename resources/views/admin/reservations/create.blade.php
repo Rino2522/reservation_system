@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="container mx-auto mt-4">
         <h2 class="text-xl font-bold mb-4">新しい予約を作成</h2>
-        <form action="{{ route('reservations.store') }}" method="POST">
+        <form action="{{ route('admin.reservations.store') }}" method="POST">
             @csrf
             <div class="mb-4">
                 <label for="name" class="block text-sm font-medium text-gray-700">名前</label>
@@ -20,8 +20,12 @@
                 <input type="number" name="number_of_guests" id="number_of_guests" class="mt-1 block w-full" required>
             </div>
             <div class="mb-4">
-                <label for="date_time" class="block text-sm font-medium text-gray-700">日時</label>
-                <input type="datetime-local" name="date_time" id="date_time" class="mt-1 block w-full" required>
+                <label for="date" class="block text-sm font-medium text-gray-700">日付</label>
+                <input type="date" name="date" id="date" class="mt-1 block w-full" required>
+            </div>
+            <div class="mb-4">
+                <label for="time" class="block text-sm font-medium text-gray-700">時間</label>
+                <input type="time" name="time" id="time" class="mt-1 block w-full" required>
             </div>
             <div>
                 <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded">予約を作成</button>
