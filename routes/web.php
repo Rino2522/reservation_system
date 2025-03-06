@@ -33,6 +33,8 @@ Route::get('/admin/reservations', [ReservationController::class, 'adminIndex'])-
 Route::get('/admin/reservations/create', [ReservationController::class, 'adminCreate'])->name('admin.reservations.create');
 Route::post('/admin/reservations', [ReservationController::class, 'adminStore'])->name('admin.reservations.store');
 Route::get('/admin/reservations/edit/{reservation}', [ReservationController::class, 'adminEdit'])->name('admin.reservations.edit');
+Route::put('/admin/reservations/{reservation}', [ReservationController::class, 'adminUpdate'])->name('admin.reservations.update');
+Route::delete('/admin/reservations/{reservation}', [ReservationController::class, 'adminDestroy'])->name('admin.reservations.destroy');
 
 Route::get('/reservations/create', [ReservationController::class, 'create'])->name('reservations.create');
 Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');

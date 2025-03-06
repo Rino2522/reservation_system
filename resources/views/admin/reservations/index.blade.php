@@ -21,10 +21,28 @@
                         <td class="border px-4 py-2">{{ $reservation->number_of_guests }}</td>
                         <td class="border px-4 py-2">{{ $reservation->date }}</td>
                         <td class="border px-4 py-2">{{ $reservation->time }}</td>
-
+                        <td class="border px-4 py-2">
+                            <a href="{{ route('admin.reservations.edit', $reservation->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">編集</a>
+                            <form action="{{ route('admin.reservations.destroy', $reservation->id) }}" method="POST" class="inline-block" id="form_{{ $reservation->id }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="button" onclick="deleteReservation({{ $reservation->id }})">
+                                    <svg class="h-6 w-6 text-red-500"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />  <line x1="9" y1="9" x2="15" y2="15" />  <line x1="15" y1="9" x2="9" y2="15" /></svg>
+                                </button>
+                            </form>
+                        </td>   
                     </tr>
                 @endforeach
             </tbody>
         </table>
-    </div>
+    </div>    
 </x-app-layout>
+<script>
+    function deleteReservation(id) {
+        'use strict'
+
+        if (confirm('削除すると復元できません。\n本当に削除しますか？')) {
+            document.getElementById(`form_${id}`).submit();
+        }
+    }
+</script>
