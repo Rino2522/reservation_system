@@ -39,4 +39,7 @@ Route::delete('/admin/reservations/{reservation}', [ReservationController::class
 Route::get('/reservations/create', [ReservationController::class, 'create'])->name('reservations.create');
 Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
 
+Route::get('/reservations/input-phone', [ReservationController::class, 'inputPhone'])->name('reservations.input-phone');
+Route::post('/reservations/search', [ReservationController::class, 'searchbyPhone'])->name('reservations.search');
+
 require __DIR__.'/auth.php';

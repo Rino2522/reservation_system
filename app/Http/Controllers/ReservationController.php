@@ -116,4 +116,22 @@ class ReservationController extends Controller
             return redirect()->route('welcome')->with('success', '予約が完了しました。');
 
       }
+
+      // 電話番号入力画面を表示
+      public function inputPhone()
+      {
+        return view('reservations.input-phone');
+      }
+
+      // 電話番号で予約を検索
+      public function searchByPhone(Request $request)
+      {
+        $request->validate([
+            'phone' => 'required|string|max:20',
+        ]);
+
+        $reservations = Reservation::where('phone', $request->phone)->get();
+
+        return view('reservations.search-results', compact('reservations'));
+      }
 }
