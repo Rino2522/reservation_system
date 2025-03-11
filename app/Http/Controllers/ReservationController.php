@@ -50,6 +50,42 @@ class ReservationController extends Controller
             return redirect()->route('admin.reservations.index')->with('success', '予約が作成されました。');
       }
 
+      //　従業員用の予約編集画面を表示
+      public function adminEdit(Reservation $reservation)
+      {
+            return view('admin.reservations.edit')->with('reservation', $reservation);
+      }
+      
+      //　従業員用の予約更新処理
+      public function adminUpdate(Request $request, Reservation $reservation)
+      {
+            $request->validate([
+                  'name' => 'required|string|max:255',
+                  'email' => 'required|email|max:255',
+                  'phone' => 'required|string|max:20',
+                  'number_of_guests' => 'required|integer|min:1',
+                  'date' => 'required|date',
+                  'time' => 'required|date_format:H:i',
+            ]);
+
+            $reservation->name = $request->name;
+            $reservation->email = $request->email;
+            $reservation->phone = $request->phone;
+            $reservation->number_of_guests = $request->number_of_guests;
+            $reservation->date = $request->date;
+            $reservation->time = $request->time;
+            $reservation->save();
+
+            return redirect()->route('admin.reservations.index')->with('success', '予約が更新されました。');
+      }
+
+      // 従業員用の予約削除処理
+      public function adminDestroy(Reservation $reservation)
+      {
+            $reservation->delete();
+            return redirect()->route('admin.reservations.index')->with('success', '予約が削除されました。');
+      }     
+      
       //　一般用の予約作成画面を表示
       public function create()
       {
@@ -79,5 +115,23 @@ class ReservationController extends Controller
       
             return redirect()->route('welcome')->with('success', '予約が完了しました。');
 
+      }
+
+      // 電話番号入力画面を表示
+      public function inputPhone()
+      {
+        return view('reservations.input-phone');
+      }
+
+      // 電話番号で予約を検索
+      public function searchByPhone(Request $request)
+      {
+        $request->validate([
+            'phone' => 'required|string|max:20',
+        ]);
+
+        $reservations = Reservation::where('phone', $request->phone)->get();
+
+        return view('reservations.search-results', compact('reservations'));
       }
 }

@@ -1,62 +1,48 @@
-<x-app-layout>
-    <div class="container mx-auto mt-4 p-6 bg-white shadow-md rounded">
-        <h2 class="text-xl font-bold mb-4">新しい予約を作成</h2>
+<x-guest-layout>
+    <div class="container mx-auto mt-12 p-10 bg-white shadow-2xl rounded-lg max-w-xl text-gray-900">
+        <h2 class="text-3xl font-extrabold text-center mb-6 text-gray-800">新しい予約を作成</h2>
 
-        <form action="{{ route('reservations.store') }}" method="POST">
+        <form action="{{ route('reservations.store') }}" method="POST" class="space-y-6">
             @csrf
 
-            <!-- 名前 -->
-            <div class="mb-4">
+            <div>
                 <label for="name" class="block text-sm font-medium text-gray-700">名前</label>
-                <input type="text" name="name" id="name" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2" required>
-                @error('name')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                @enderror
+                <input type="text" name="name" id="name" class="mt-1 block w-full border border-gray-300 bg-gray-100 text-gray-900 rounded-lg px-4 py-3 focus:ring-[#8B5A2B] focus:border-[#8B5A2B]" required>
+                @error('name')<p class="text-red-500 text-sm mt-1">{{ $message }}</p>@enderror
             </div>
 
-            <!-- メールアドレス -->
-            <div class="mb-4">
+            <div>
                 <label for="email" class="block text-sm font-medium text-gray-700">メールアドレス</label>
-                <input type="email" name="email" id="email" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2" required>
-                @error('email')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                @enderror
+                <input type="email" name="email" id="email" class="mt-1 block w-full border border-gray-300 bg-gray-100 text-gray-900 rounded-lg px-4 py-3 focus:ring-[#8B5A2B] focus:border-[#8B5A2B]" required>
+                @error('email')<p class="text-red-500 text-sm mt-1">{{ $message }}</p>@enderror
             </div>
-            
-            <!-- 電話番号 -->
-            <div class="mb-4">
+
+            <div>
                 <label for="phone" class="block text-sm font-medium text-gray-700">電話番号</label>
-                <input type="text" name="phone" id="phone" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2" required>
-                @error('phone')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                @enderror
+                <input type="text" name="phone" id="phone" class="mt-1 block w-full border border-gray-300 bg-gray-100 text-gray-900 rounded-lg px-4 py-3 focus:ring-[#8B5A2B] focus:border-[#8B5A2B]" required>
+                @error('phone')<p class="text-red-500 text-sm mt-1">{{ $message }}</p>@enderror
             </div>
 
-            <!-- 人数 -->
-            <div class="mb-4">
+            <div>
                 <label for="number_of_guests" class="block text-sm font-medium text-gray-700">人数</label>
-                <input type="number" name="number_of_guests" id="number_of_guests" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2" required min="1">
-                @error('number_of_guests')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                @enderror
+                <input type="number" name="number_of_guests" id="number_of_guests" class="mt-1 block w-full border border-gray-300 bg-gray-100 text-gray-900 rounded-lg px-4 py-3 focus:ring-[#8B5A2B] focus:border-[#8B5A2B]" required min="1">
+                @error('number_of_guests')<p class="text-red-500 text-sm mt-1">{{ $message }}</p>@enderror
             </div>
 
-            <!-- 日付選択 -->
-            <div class="mb-4">
+            <div>
                 <label for="date" class="block text-sm font-medium text-gray-700">予約日</label>
-                <input type="date" name="date" id="date" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2" required>
+                <input type="date" name="date" id="date" class="mt-1 block w-full border border-gray-300 bg-gray-100 text-gray-900 rounded-lg px-4 py-3 focus:ring-[#8B5A2B] focus:border-[#8B5A2B]" required>
             </div>
 
-            <!-- 時間選択 -->
-            <div class="mb-4">
+            <div>
                 <label for="time" class="block text-sm font-medium text-gray-700">予約時間</label>
-                <select name="time" id="time" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2" required>
+                <select name="time" id="time" class="mt-1 block w-full border border-gray-300 bg-gray-100 text-gray-900 rounded-lg px-4 py-3 focus:ring-[#8B5A2B] focus:border-[#8B5A2B]" required>
                     <option value="">時間を選択してください</option>
                 </select>
             </div>
 
             <div>
-                <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-200">
+                <button type="submit" class="w-full px-6 py-3 bg-gradient-to-r from-[#8B5A2B] to-[#A0522D] text-white font-bold rounded-lg shadow-lg hover:opacity-90 transition duration-300 text-lg">
                     予約を作成
                 </button>
             </div>
@@ -70,10 +56,9 @@
 
             dateInput.addEventListener("change", function() {
                 const selectedDate = new Date(dateInput.value);
-                const day = selectedDate.getDay(); // 0: 日曜, 1: 月曜, ..., 6: 土曜
+                const day = selectedDate.getDay();
                 const today = new Date();
                 
-                // 過去の日付を選択できないようにする
                 if (selectedDate < today.setHours(0, 0, 0, 0)) {
                     alert("過去の日付は選択できません。");
                     dateInput.value = "";
@@ -81,7 +66,6 @@
                     return;
                 }
 
-                // 水曜日を選択不可にする
                 if (day === 3) {
                     alert("水曜日は定休日です。別の日を選択してください。");
                     dateInput.value = "";
@@ -89,21 +73,19 @@
                     return;
                 }
 
-                // 予約可能な時間を設定
                 let startHour, endHour;
-                if (day === 0) { // 日曜・祝日 12:00〜19:00
+                if (day === 0) {
                     startHour = 12;
                     endHour = 19;
-                } else { // 月曜～土曜（水曜除く）17:00〜20:00
+                } else {
                     startHour = 17;
                     endHour = 20;
                 }
 
-                // 15分刻みで時間を生成
                 timeSelect.innerHTML = '<option value="">時間を選択してください</option>';
                 for (let hour = startHour; hour <= endHour; hour++) {
                     for (let minute of ["00", "15", "30", "45"]) {
-                        if (hour === endHour && minute !== "00") continue; // 閉店時間を超えないようにする
+                        if (hour === endHour && minute !== "00") continue;
                         let timeString = `${hour}:${minute}`;
                         let option = document.createElement("option");
                         option.value = timeString;
@@ -114,4 +96,4 @@
             });
         });
     </script>
-</x-app-layout>
+</x-guest-layout>
