@@ -1,6 +1,7 @@
 <x-app-layout>
     <div class="container mx-auto mt-12 p-10 bg-white shadow-2xl rounded-lg max-w-5xl text-gray-900">
-        <h2 class="text-3xl font-extrabold text-center mb-6 text-gray-800">予約結果</h2>
+        <h2 class="text-3xl font-extrabold text-center mb-6 text-gray-800">予約一覧</h2>
+        <h4 class="text-xl font-bold text-center mb-6 text-gray-800">変更・キャンセル</h4>
 
         @if($reservations->isEmpty())
             <p class="text-red-500 text-center text-lg">一致する予約が見つかりませんでした。</p>
