@@ -12,8 +12,8 @@
             </div>
 
             <div>
-                <label for="email" class="block text-sm font-medium text-gray-700">メールアドレス</label>
-                <input type="email" name="email" id="email" class="mt-1 block w-full border border-gray-300 bg-gray-100 text-gray-900 rounded-lg px-4 py-3 focus:ring-[#8B5A2B] focus:border-[#8B5A2B]" required>
+                <label for="email" class="block text-sm font-medium text-gray-700">メールアドレス（任意）</label>
+                <input type="email" name="email" id="email" class="mt-1 block w-full border border-gray-300 bg-gray-100 text-gray-900 rounded-lg px-4 py-3 focus:ring-[#8B5A2B] focus:border-[#8B5A2B]" >
                 @error('email')<p class="text-red-500 text-sm mt-1">{{ $message }}</p>@enderror
             </div>
 
@@ -25,7 +25,7 @@
 
             <div>
                 <label for="number_of_guests" class="block text-sm font-medium text-gray-700">人数</label>
-                <input type="number" name="number_of_guests" id="number_of_guests" class="mt-1 block w-full border border-gray-300 bg-gray-100 text-gray-900 rounded-lg px-4 py-3 focus:ring-[#8B5A2B] focus:border-[#8B5A2B]" required min="1">
+                <input type="number" name="number_of_guests" id="number_of_guests" class="mt-1 block w-full border border-gray-300 bg-gray-100 text-gray-900 rounded-lg px-4 py-3 focus:ring-[#8B5A2B] focus:border-[#8B5A2B]" required min="1" max="8">
                 @error('number_of_guests')<p class="text-red-500 text-sm mt-1">{{ $message }}</p>@enderror
             </div>
 
@@ -39,6 +39,16 @@
                 <select name="time" id="time" class="mt-1 block w-full border border-gray-300 bg-gray-100 text-gray-900 rounded-lg px-4 py-3 focus:ring-[#8B5A2B] focus:border-[#8B5A2B]" required>
                     <option value="">時間を選択してください</option>
                 </select>
+            </div>
+
+            <div>
+                <label for="meal_type" class="block text-sm font-medium text-gray-700">料理</label>
+                <select name="meal_type" id="meal_type" class="mt-1 block w-full border border-gray-300 bg-gray-100 text-gray-900 rounded-lg px-4 py-3 focus:ring-[#8B5A2B] focus:border-[#8B5A2B]" required>
+                    <option value="">選択してください</option>
+                    <option value="コース">コース</option>
+                    <option value="アラカルト">アラカルト</option>
+                </select>
+                @error('meal_type')<p class="text-red-500 text-sm mt-1">{{ $message }}</p>@enderror
             </div>
 
             <div>

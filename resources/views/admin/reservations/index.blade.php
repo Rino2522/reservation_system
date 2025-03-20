@@ -1,50 +1,63 @@
 <x-app-layout>
-    <div class="container mx-auto mt-4">
-        <h1 class="text-3xl font-bold">予約一覧</h1>
-        <table class="table-auto w-full">
-            <thead>
-                <tr>
-                    <th class="px-4 py-2">名前</th>
-                    <th class="px-4 py-2">メールアドレス</th>
-                    <th class="px-4 py-2">電話番号</th>
-                    <th class="px-4 py-2">人数</th>
-                    <th class="px-4 py-2">日</th>
-                    <th class="px-4 py-2">時間</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($reservations as $reservation)
-                    <tr>
-                        <td class="border px-4 py-2">{{ $reservation->name }}</td>
-                        <td class="border px-4 py-2">{{ $reservation->email }}</td>
-                        <td class="border px-4 py-2">{{ $reservation->phone}}</td>
-                        <td class="border px-4 py-2">{{ $reservation->number_of_guests }}</td>
-                        <td class="border px-4 py-2">{{ $reservation->date }}</td>
-                        <td class="border px-4 py-2">{{ $reservation->time }}</td>
-                        <td class="border px-4 py-2">
-                            <a href="{{ route('admin.reservations.edit', $reservation->id) }}">
-                                <svg class="h-8 w-8 text-sky-500"  width="24"  height="24"  viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" /></svg>
-                            </a>
-                            <form action="{{ route('admin.reservations.destroy', $reservation->id) }}" method="POST" class="inline-block" id="form_{{ $reservation->id }}">
-                                @csrf
-                                @method('DELETE')
-                                <button type="button" onclick="deleteReservation({{ $reservation->id }})">
-                                    <svg class="h-8 w-8 text-red-500"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />  <line x1="9" y1="9" x2="15" y2="15" />  <line x1="15" y1="9" x2="9" y2="15" /></svg>
-                                </button>
-                            </form>
-                        </td>   
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>    
-</x-app-layout>
-<script>
-    function deleteReservation(id) {
-        'use strict'
 
-        if (confirm('削除すると復元できません。\n本当に削除しますか？')) {
-            document.getElementById(`form_${id}`).submit();
+    <!-- カレンダー表示 -->
+    <div class="bg-white shadow rounded-lg p-4">
+        <div id="calendar-container">
+            <div id="calendar"></div>
+        </div>
+    </div>
+</x-app-layout>
+
+<!-- FullCalendarを読み込む -->
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
+
+<style>
+    /* カレンダーのレスポンシブ対応 */
+    #calendar-container {
+        width: 100%;
+        max-width: 1200px; /* PCでは最大1200px */
+        margin: 0 auto;
+    }
+    
+    @media (max-width: 1024px) {
+        #calendar-container {
+            max-width: 900px; /* タブレット用 */
         }
     }
+
+    @media (max-width: 768px) {
+        #calendar-container {
+            max-width: 100%; /* スマホは全幅 */
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridWeek', // 1週間ごとの表示
+            locale: 'ja', // 日本語対応
+            firstDay: 0, // 週の開始日（日曜日）
+            height: 600,
+            contentHeight: 700, // デフォルトの高さを700pxに設定
+            expandRows: true, // 予約が多くなった場合に自動調整
+            headerToolbar: {
+                left: '',
+                center: 'title',
+                right: 'prev,next today',
+            },
+            events: [
+                @foreach($reservations as $reservation)
+                {
+                    title: "{{ $reservation->name }}（{{ $reservation->number_of_guests }}人）",
+                    start: "{{ $reservation->date }}T{{ $reservation->time }}",
+                    url: "{{ route('admin.reservations.edit', $reservation->id) }}"
+                },
+                @endforeach
+            ]
+        });
+        calendar.render();
+    });
 </script>

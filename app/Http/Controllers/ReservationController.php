@@ -31,11 +31,12 @@ class ReservationController extends Controller
       {
             $request->validate([
                   'name' => 'required|string|max:255',
-                  'email' => 'required|email|max:255',
-                  'phone' => 'required|string|max:20',
-                  'number_of_guests' => 'required|integer|min:1',
+                  'email' => 'nullable|email|max:255',
+                  'phone' => 'required|string|max:15',
+                  'number_of_guests' => 'required|integer|min:1|max:8',
                   'date' => 'required|date',
                   'time' => 'required|date_format:H:i',
+                  'meal_type' => 'required|in:コース,アラカルト',
             ]);
 
             Reservation::create([
@@ -45,6 +46,7 @@ class ReservationController extends Controller
                   'number_of_guests' => $request->number_of_guests,
                   'date' => $request->date,
                   'time' => $request->time,
+                  'meal_type' => $request->meal_type,
             ]);
             
             return redirect()->route('admin.reservations.index')->with('success', '予約が作成されました。');
@@ -61,20 +63,23 @@ class ReservationController extends Controller
       {
             $request->validate([
                   'name' => 'required|string|max:255',
-                  'email' => 'required|email|max:255',
-                  'phone' => 'required|string|max:20',
-                  'number_of_guests' => 'required|integer|min:1',
+                  'email' => 'nullable|email|max:255',
+                  'phone' => 'required|string|max:15',
+                  'number_of_guests' => 'required|integer|min:1|max:8',
                   'date' => 'required|date',
                   'time' => 'required|date_format:H:i',
+                  'meal_type' => 'required|in:コース,アラカルト',
             ]);
 
-            $reservation->name = $request->name;
-            $reservation->email = $request->email;
-            $reservation->phone = $request->phone;
-            $reservation->number_of_guests = $request->number_of_guests;
-            $reservation->date = $request->date;
-            $reservation->time = $request->time;
-            $reservation->save();
+            $reservation->update([
+                  'name' => $request->name,
+                  'email' => $request->email,
+                  'phone' => $request->phone,
+                  'number_of_guests' => $request->number_of_guests,
+                  'date' => $request->date,
+                  'time' => $request->time,
+                  'meal_type' => $request->meal_type,
+            ]);
 
             return redirect()->route('admin.reservations.index')->with('success', '予約が更新されました。');
       }
@@ -97,11 +102,12 @@ class ReservationController extends Controller
       {
             $request->validate([
                         'name' => 'required|string|max:255',
-                        'email' => 'required|string',
+                        'email' => 'nullable|email|max:255',
                         'phone' => 'required|string|max:15',
-                        'number_of_guests' => 'required|integer|min:1',
+                        'number_of_guests' => 'required|integer|min:1|max:8',
                         'date' => 'required|date',
                         'time' => 'required|date_format:H:i',
+                        'meal_type' => 'required|in:コース,アラカルト',
                   ]);
 
             Reservation::create([
@@ -111,6 +117,7 @@ class ReservationController extends Controller
                   'number_of_guests' => $request->number_of_guests,
                   'date' => $request->date,
                   'time' => $request->time,
+                  'meal_type' => $request->meal_type,
             ]);
       
             return redirect()->route('welcome')->with('success', '予約が完了しました。');
