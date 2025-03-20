@@ -23,7 +23,7 @@
                     </a>
                 </div>
                 <div class="flex justify-center">
-                    <a href="#"  target="_blank"
+                    <a href="https://www.instagram.com/sushi_higashino/"  target="_blank"
                        class="flex items-center justify-center w-14 h-14 bg-white text-[#4B382A] text-3xl font-serif rounded-full shadow-lg hover:bg-gray-200 
                               border-2 border-[#4B382A] transition">
                         <i class="fa-brands fa-instagram"></i>
