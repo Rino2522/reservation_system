@@ -20,9 +20,10 @@ class ReservationFactory extends Factory
             'name' => $this->faker->name,
             'email' => $this->faker->safeEmail,
             'phone' => $this->faker->phoneNumber,
-            'number_of_guests' => $this->faker->numberBetween(1, 10),
-            'date_' => $this->faker->dateBetween('+1 days', '+1 month'),
+            'number_of_guests' => $this->faker->numberBetween(1, 8),
+            'date' => $this->faker->dateBetween('+1 days', '+1 month'),
             'time' => $this->faker->time(),
+            'meal_type' => $this->faker->randomElement(['コース', 'アラカルト']),
         ];
     }
 }

@@ -17,7 +17,7 @@
             <!-- メールアドレス -->
             <div class="mb-4">
                 <label for="email" class="block text-sm font-medium text-gray-700">メールアドレス</label>
-                <input type="email" name="email" id="email" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2" required>
+                <input type="email" name="email" id="email" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2">
                 @error('email')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
@@ -35,7 +35,7 @@
             <!-- 人数 -->
             <div class="mb-4">
                 <label for="number_of_guests" class="block text-sm font-medium text-gray-700">人数</label>
-                <input type="number" name="number_of_guests" id="number_of_guests" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2" required min="1">
+                <input type="number" name="number_of_guests" id="number_of_guests" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2" required min="1" max="8">
                 @error('number_of_guests')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
@@ -53,6 +53,16 @@
                 <select name="time" id="time" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2" required>
                     <option value="">時間を選択してください</option>
                 </select>
+            </div>
+
+            <div>
+                <label for="meal_type" class="block text-sm font-medium text-gray-700">料理</label>
+                <select name="meal_type" id="meal_type" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2" required>
+                    <option value="">選択してください</option>
+                    <option value="コース">コース</option>
+                    <option value="アラカルト">アラカルト</option>
+                </select>
+                @error('meal_type')<p class="text-red-500 text-sm mt-1">{{ $message }}</p>@enderror
             </div>
 
             <div>

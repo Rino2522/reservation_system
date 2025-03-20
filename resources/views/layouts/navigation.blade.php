@@ -8,7 +8,7 @@
                     <!-- Logo -->
                     <div class="shrink-0 flex items-center">
                         <a href="{{ route('dashboard') }}">
-                            <img src="{{ asset('maru.jpg') }}" alt="鮨" class="block h-9 w-auto fill-current text-gray-800">
+                            <img src="{{ asset('sakana.jpg') }}" alt="鮨" class="block h-9 w-auto fill-current text-gray-800">
                         </a>
                     </div>
 
@@ -72,7 +72,7 @@
                     <!-- Logo -->
                     <div class="shrink-0 flex items-center">
                         <a href="{{ url('/') }}">
-                            <img src="{{ asset('maru.jpg') }}" alt="鮨" class="block h-9 w-auto fill-current text-gray-800">
+                            <img src="{{ asset('sakana.jpg') }}" alt="鮨" class="block h-9 w-auto fill-current text-gray-800">
                         </a>
                     </div>
                 </div>

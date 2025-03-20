@@ -16,5 +16,6 @@ class Reservation extends Model
         'number_of_guests',
         'date',
         'time',
+        'meal_type',
     ];
 }
