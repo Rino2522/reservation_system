@@ -23,7 +23,7 @@
                     </a>
                 </div>
                 <div class="flex justify-center">
-                    <a href="https://www.instagram.com/sushi_higashino/"  target="_blank"
+                    <a href="#"  target="_blank"
                        class="flex items-center justify-center w-14 h-14 bg-white text-[#4B382A] text-3xl font-serif rounded-full shadow-lg hover:bg-gray-200 
                               border-2 border-[#4B382A] transition">
                         <i class="fa-brands fa-instagram"></i>
@@ -32,7 +32,8 @@
             </div>
         </div>
         <div class="footer mt-16 text-sm text-[#6D5A49]">
-            <p>&copy; 2025 鮨 | すべての権利を保有</p>
+            <p>&copy; 2025 鮨 | すべての権利を保有</p>            
+            @vite(['resources/css/app.css', 'resources/js/app.js'])
         </div>
     </div>
 </x-guest-layout>

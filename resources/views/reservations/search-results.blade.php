@@ -46,10 +46,6 @@
                 </a>
             </div>
         </div>
-
-        <div class="footer mt-16 text-sm text-[#6D5A49]">
-            <p>&copy; 2025 鮨 | すべての権利を保有</p>
-        </div>
     </div>
 </x-guest-layout>
 

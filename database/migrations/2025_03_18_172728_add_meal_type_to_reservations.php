@@ -12,9 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('reservations', function (Blueprint $table) {
-            $table->string('meal_type')->after('time');
+            $table->string('meal_type')->default('standard')->after('time');
         });
     }
+    
 
     /**
      * Reverse the migrations.

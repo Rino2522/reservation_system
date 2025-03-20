@@ -8,17 +8,16 @@
         <title>鮨 予約ページ</title>
 
         <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
+        <link rel="preconnect" href="https://fonts.bunny.net">               
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-<link rel="stylesheet" href="{{ mix('css/app.css') }}">
     </head>
-        <body class="font-sans text-gray-900 antialiased">
-            @include('layouts.navigation')
-            <main class="max-w-7xl mx-auto mt-6 px-4">
-                {{ $slot }}
-            </main>
-        </body>
+    <body class="font-sans text-gray-900 antialiased">
+        @include('layouts.navigation')
+        <main class="max-w-7xl mx-auto mt-6 px-4">
+            {{ $slot }}
+        </main>
+    </body>
 </html>
