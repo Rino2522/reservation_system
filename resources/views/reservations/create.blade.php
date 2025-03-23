@@ -12,8 +12,8 @@
             </div>
 
             <div>
-                <label for="email" class="block text-sm font-medium text-gray-700">メールアドレス（任意）</label>
-                <input type="email" name="email" id="email" class="mt-1 block w-full border border-gray-300 bg-gray-100 text-gray-900 rounded-lg px-4 py-3 focus:ring-[#8B5A2B] focus:border-[#8B5A2B]" >
+                <label for="email" class="block text-sm font-medium text-gray-700">メールアドレス</label>
+                <input type="email" name="email" id="email" class="mt-1 block w-full border border-gray-300 bg-gray-100 text-gray-900 rounded-lg px-4 py-3 focus:ring-[#8B5A2B] focus:border-[#8B5A2B]" required>
                 @error('email')<p class="text-red-500 text-sm mt-1">{{ $message }}</p>@enderror
             </div>
 

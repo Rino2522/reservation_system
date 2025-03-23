@@ -18,7 +18,7 @@
             <!-- メールアドレス -->
             <div class="mb-4">
                 <label for="email" class="block text-sm font-medium text-gray-700">メールアドレス</label>
-                <input type="email" name="email" id="email" value="{{ old('email', $reservation->email) }}" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2">
+                <input type="email" name="email" id="email" value="{{ old('email', $reservation->email) }}" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2" required>
                 @error('email')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
